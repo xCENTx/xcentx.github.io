@@ -57,8 +57,6 @@ If anything it appears we are at least getting close to our objective.
 > // or the user enabled the devel/verbose console it prints all patching info whenever it's applied,  
 > // else it prints the patching info only once - right after boot.  
 ```
-|Search Results                           |  AppCoreThread.cpp                      |
-|:---------------------------------------:|:---------------------------------------:|
 |![image](https://i.imgur.com/zXpQR6E.png)|![image](https://i.imgur.com/BKBh0u2.png)|
 
 ## Compiling PCSX2 from Source
