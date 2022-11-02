@@ -43,8 +43,8 @@ Sounds simple enough right?
 As mentioned applying patches in settings will also apply our games patches. Another key thing to note that I have forgot to mention is that PNACH files do in fact work, this issue is only for people using non native methods to modify process memory. This includes trainers and CheatEngine. 
 
 This leaves us with 2 areas to dig through. Much better than digging through the entire source code
-- PCSX2 PNACH System
-- PCSX2 General Settings  
+> - PCSX2 PNACH System
+> - PCSX2 General Settings  
 
 Searching for `PNACH` itself won't turn up much but a search for "patch" will at least give some stuff to filter through (a lot, ignore anything `dispatch()`)  
 `PatchesCon` and `PatchesVerboseReset()` both look pretty interesting. Double clicking on either of the two will bring us to where it is declared in whichever file it is housed in.  
