@@ -1,4 +1,3 @@
-# TASK FORCE
 <p align="center">
 <img src="https://i.imgur.com/SlppBsz.png">
 </p>
@@ -25,3 +24,33 @@ A game like Task Force would have a hard time surviving in todays gaming landsca
 The community had high hopes for this game, unfortunately the development team were not able to keep up with the momentum. Seemingly 1 negative review on Steam was enough to make the developer switch directions and start attacking his consumers. On the day of release (SOCOMCs Anniversary) BigFryTV decided to stream gameplay for his community and was also banned within 30 minutes for saying something negative about the games spawn system. Overall the devs and community manager attitude seemed to kill the game. Although there is promise for the game to return someday.
 
 # Creating a Task Force Cheat
+- Provided is a Task Force SDK.
+
+Creating cheats for Task Force is is a trivial matter. There is a few different steps a user can take but the end result is generally the same. Since Task Force is an Unreal Engine game the very first thing one should do is attempt to dump the game with a tool like Knackers or Cake San dumpers. These are vital assets that can reveal classes, offsets and functions. 
+
+**Important Classes**  
+- UWorld
+- APlayerController
+- ACharacter
+- ATaskForceCharacter
+- ATaskForceWeapon
+
+**Important Functions**
+- IsA() 		|	Used to determine if entity is Class Type defined
+- IsAlive() |	Used to determine if entity is alive
+- IsBot()	|	Used to determine if entity is a bot
+- GetActorBounds() |	Used to get the actors dimensions such as height and width
+- ProjectWorldLocationToScreen()	|	Used to draw a location in the game world on the 2D screen space
+- ThrowProjectile()	|	Used to throw an object
+- LineOfSightTo() 	|	Used to determine if EntityA can visually see EntityB
+
+
+**Cheat Features**
+- ESP
+- Aimbot
+- Infinite Ammo
+- Rapid Fire
+- No Recoil
+- Fly Mode
+- Spoof Name
+- Spam Chat
