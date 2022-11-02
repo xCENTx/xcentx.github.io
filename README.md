@@ -1,56 +1,249 @@
+
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
+<!-- LOGO -->
+<br />
+
 <p align="center">
-<img src="https://i.imgur.com/SlppBsz.png">
+  <a href="https://github.com/akiritsu/pRoJEct-VeXEd">
+    <img src="src/assets/img/favicon.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">pRoJEct-VeXEd</h3>
+    <h5 align="center">v 2.4</h5>
+    <br />
+  <p align="center">
+    pRoJEct-NeGYa is a hacker-like, highly-customizable theme for note-keeping, personal-website or CV.
+    <br />
+    <br />
+    <a href="https://akiritsu.github.io/pRoJEct-VeXEd/">View Demo</a>
+    ·
+    <a href="https://github.com/akiritsu/pRoJEct-VeXEd/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/akiritsu/pRoJEct-VeXEd/issues">Request Feature</a>
+  </p>
+
 </p>
 
-# Game Summary
-Release Date: August 26, 2022  
-Game Engine: Unreal Engine v4.26
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-Task Force is a game that was created by a few SOCOM fans. SOCOM was a popular 3rd person tactical shooter on the PlayStation 2 back in the early 2000's (in fact this forum houses some topics on the game dating that far back!) Due to SONY not making a SOCOM since the PlayStation 3, there have been a lot of fan recreations. CS GO, Insurgency and Fortnite are some games which have special modes / mods that can be downloaded to play a socom like experience. 
-
-For a SOCOM "Remake" Task Force did a decent job at capturing what made SOCOM such a great experience. 
-> - Round based game modes with 1 life 
-> - Tactical game modes such as Extraction and Demolition
-> - Integrated Voice Comms w/ 1 user speaking at a time
-
-While Task Force captured some of the things that made SOCOM a great experience .... It also missed on some of the hallmarks that a SOCOM fan expects from the franchise and its recreations.
-> - Leaderboards
-> - Clans
-> - Lobbies
-> - Playerbase
-
-A game like Task Force would have a hard time surviving in todays gaming landscape. Most people do not want to watch somebody stare at a wall for 3 minutes waiting for the next round. Then there's grenade spam at the start of each match , basically forcing you to rush to cover dodging all the incoming grenades. The first 30 seconds of a round are really hectic but its a steep fall off from there.
-
-The community had high hopes for this game, unfortunately the development team were not able to keep up with the momentum. Seemingly 1 negative review on Steam was enough to make the developer switch directions and start attacking his consumers. On the day of release (SOCOMCs Anniversary) BigFryTV decided to stream gameplay for his community and was also banned within 30 minutes for saying something negative about the games spawn system. Overall the devs and community manager attitude seemed to kill the game. Although there is promise for the game to return someday.
-
-# Creating a Task Force Cheat
-- Provided is a Task Force SDK.
-
-Creating cheats for Task Force is is a trivial matter. There is a few different steps a user can take but the end result is generally the same. Since Task Force is an Unreal Engine game the very first thing one should do is attempt to dump the game with a tool like Knackers or Cake San dumpers. These are vital assets that can reveal classes, offsets and functions. 
-
-**Important Classes**  
-- UWorld
-- APlayerController
-- ACharacter
-- ATaskForceCharacter
-- ATaskForceWeapon
-
-**Important Functions**
-- IsA() 		|	Used to determine if entity is Class Type defined
-- IsAlive() |	Used to determine if entity is alive
-- IsBot()	|	Used to determine if entity is a bot
-- GetActorBounds() |	Used to get the actors dimensions such as height and width
-- ProjectWorldLocationToScreen()	|	Used to draw a location in the game world on the 2D screen space
-- ThrowProjectile()	|	Used to throw an object
-- LineOfSightTo() 	|	Used to determine if EntityA can visually see EntityB
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Features](#features)
+  - [Builtwith](#builtwith)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Personalize and Customize](#personalize-and-customize)
+    - [_config.yml](#_configyml)
+    - [Collections](#collections)
+    - [Writing](#writing)
+    - [Comment](#comment)
+    - [Test locally](#test-locally)
+    - [Front Matter](#front-matter)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 
-**Cheat Features**
-- ESP
-- Aimbot
-- Infinite Ammo
-- Rapid Fire
-- No Recoil
-- Fly Mode
-- Spoof Name
-- Spam Chat
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+![homepage](src/assets/img/Screenshot-2.png)
+
+This jekyll theme is a content-oriented blog, cv or learning notes, aimed at providing a convinient note-keeping tool. You can keep and review your notes or articles in different collections without any functional recode.
+
+### Features
+
+* Highly customizable
+* Formula insertion
+* Code test online
+* Easy-to-use cheatsheet
+* Hacker-like theme
+* Code highlight
+* Text Decryption
+* Convinient code exhibition and review
+* Table of content
+* Atom Feeds
+* SEO
+
+### Builtwith
+
+* Bundler
+* Jekyll
+* Mathpix
+* Font Awesome
+* Sjcl
+* Disqus
+* Mermaid
+
+## Getting Started
+
+### Prerequisites
+* rubygems
+
+The installation of gem is depend on your operating system. Alternatively, you can download Gem through browser: [Ruby](https://www.ruby-lang.org/en/downloads/), and install rubygems manually.
+
+```bash
+# macOS
+
+brew update
+brew install ruby
+
+# Ubuntu
+sudo apt-get install ruby
+
+# Arch
+sudo pacman -S ruby
+
+```
+
+* bundler
+
+```bash
+gem install bundler
+```
+* jekyll
+```bash
+bundler install jekyll
+```
+
+* jekyll plugins
+
+```bash
+gem install jekyll-sitemap jekyll-feed jekyll-seo-tag jekyll-mermaid
+```
+
+### Installation
+
+1. Fork this project on [github](https://github.com/akiritsu/pRoJEct-VeXEd), change project settings, and clone your own repository into your local disk.
+
+```bash
+git clone https://github.com/{{YOUR_USERNAME}}/{{YOUR_REPOSITORY}}.git
+```
+
+2. Change directory.
+
+```bash
+cd {{YOUR_REPOSITORY_DIR}}
+```
+
+### Personalize and Customize
+
+#### _config.yml
+
+Edit **_config.yml** with your own website information.
+
+#### Collections
+
+All your articles could be stored in this folder. You could create a new collection by creating a subfolder begin with a slash, and register the basic information in **_config.yml**. Here is an example:
+
+```yaml
+# Collections
+collections:
+  notes:
+    output          : true
+    permalink       : /:collection/:title/
+    sort_by         : date
+  portfolio:
+    output          : true
+    permalink       : /:collection/:title/
+    order: # specify post order manually
+      - portfolio3.md
+      - portfolio2.md
+      - portfolio1.md
+  album:
+    output          : true
+    permalink       : /:collection/:title/
+    sort_by         : date
+```
+
+All your articles would be shown by clicking **Archive** button in the header of your website.
+
+#### Writing
+
+Delete all sample collections under **./collections/**, and have fun in writing!
+
+#### Comment
+
+Create your own account in [Disqus.com](https://disqus.com/), and change the attribute "disqus_username" in **_config.yml**.
+
+#### Test locally
+
+Run command below, and access "127.0.0.1:4000" to test your website locally.
+
+```bash
+bundle exec jekyll serve
+```
+
+#### Front Matter
+
+You can add many front matter to customize a page. For more information, visit official document: [https://jekyllrb.com/] (https://jekyllrb.com/docs/front-matter/)
+
+```yaml
+layout: post # page layout, must be one of layouts under src/_layouts
+title: "Sample" # string
+author: "your_name" # string
+post_list: "cate" # whether to show post list under collections/_post, one of false, "cate", "date"
+collection_list: true # true or false
+toc: true # table of content, true or false
+show_date: true # whether to show date, true or false
+home_btn: true # whether to show home button, true or false
+btn_text: true # whether to show button text, true or false
+footer: true # whether to show footer, true or false
+maximize: true # whether to show maximize button, true or false
+encrypted_text: true # whether to enable encrypted text, true or false
+publish: true # if you wish keep this page invisible, put false here
+toc_level: 4 # the depth of toc, one of 1, 2, 3, 4, 5, 6
+comment: ture # whether to show comment area
+category: "sample" # string
+date: 2019-5-25 # YYYY-MM-DD
+excerpt: "This is excerpt." # string
+abstract: "This is abstract. Abstract is blank by default." # string
+```
+
+## Roadmap
+
+1. On-browser code execution teminal.
+2. Code review mode.
+3. Slide mode.
+4. Rapid cheatsheet access.
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+<!-- CONTACT -->
+## Contact
+
+DeerRIDER - [Email](mailto://deerrider666@outlook.com)
+
+Project Link: [https://github.com/akiritsu/pRoJEct-VeXEd](https://github.com/akiritsu/pRoJEct-VeXEd)
+
+[forks-shield]: https://img.shields.io/github/forks/akiritsu/pRoJEct-VeXEd.svg?style=flat-square
+[forks-url]: https://github.com/akiritsu/pRoJEct-VeXEd/network/members
+[stars-shield]: https://img.shields.io/github/stars/akiritsu/pRoJEct-VeXEd.svg?style=flat-square
+[stars-url]: https://https://github.com/akiritsu/pRoJEct-VeXEd/stargazers
+[issues-shield]: https://img.shields.io/github/issues/akiritsu/pRoJEct-VeXEd.svg?style=flat-square
+[issues-url]: https://https://github.com/akiritsu/pRoJEct-VeXEd/issues
+[license-shield]: https://img.shields.io/github/license/akiritsu/pRoJEct-VeXEd.svg?style=flat-square
+[license-url]: https://https://github.com/akiritsu/pRoJEct-VeXEd/blob/master/LICENSE.txt
