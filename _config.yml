@@ -1,10 +1,10 @@
 # 1. Site Settings
-title               : pRoJEct-VeXEd
-owner               : "DeerRIDER"
-url                : "https://akiritsu.github.io"
-baseurl            : "/pRoJEct-VeXEd"
+title               : INDEX
+owner               : "NightFyre"
+url                : #
+baseurl            : #
 permalink           : /:title/
-description         : "A hacker-style note-keeping website template."
+description         : "NightFyre's Public Documents"
 markdown            : kramdown
 statement           : "Designed by DeerRIDER, All Rights Reserved"
 bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]<>~" # texts randomly displayed in background
@@ -26,40 +26,40 @@ collection_order    :
   ]
 collections:
   math:   
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
     sort_by         : date
     alias           : "Mathematics"
   portfolio:
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
     order: # specify post order manually
       - portfolio3.md
       - portfolio2.md
       - portfolio1.md
   album:
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
     sort_by         : date
   physics:
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
   biology:
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
   finance:
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
   my_notes:
-    output          : true
+    output          : false
     permalink       : /:collection/:title/
     # An alias should be given or the UNDERSCORE will appeared 
     alias           : "My Notes"
   posts:
-    output          : true
+    output          : false
 
 # 3. Comment settings（disqus.com）
-disqus_username     : akiritsu
+disqus_username     : xCENTx
 
 # 4. Default page settings (WILL BE overwriten by front-matters of a page)
 defaults:
@@ -70,30 +70,30 @@ defaults:
       layout              : "post"      # which layout to use by default
       publish             : true        # whether to show by default      
       btn_text            : true        # whether show button text by default
-      collection_list     : true        # whether show archive button by default
+      collection_list     : false       # whether show archive button by default
       home_btn            : true        # whether show home by default
       maximize            : true        # whether show maximize button by default
       encrypted_text      : false       # whether use encrytion function by default
       toc                 : true        # whether show table of content by default
       toc_level           : 3           # the toc depth by default
-      author              : "DeerRIDER" # author name by default
+      author              : "NightFyre" # author name by default
       show_date           : true        # whether show date message by default
       category            :             # category by default
-      post_list           : false       # whether show list of post by default      
+      post_list           : true        # whether show list of post by default      
       comment             : true
       footer              : true        # whether show footer by default
 
 # 5. Social Media Accounts
-email               : "https://github.com/akiritsu/pRoJEct-VeXEd" 
+email               : 
 linkedin            : 
-github              : "just-test" 
+github              : "xCENTx"
 gitlab              : 
-website             : "https://github.com/akiritsu/pRoJEct-VeXEd"
-twitter             : "just-test"
-facebook            : "just-test"
+website             : "https://nightfyre.xyz/"
+twitter             : 
+facebook            : 
 instagram           : 
-youtube             : "just-test"
-steam               : "just-test"
+youtube             : 
+steam               : 
 weibo               :
       
 # 6. Where things are
