@@ -1,10 +1,10 @@
 # 1. Site Settings
-title               : NightFyre FrameWorks
-owner               : "NightFyre"
-url                : "https://xcentx.github.io"
-baseurl            : "/xcentx"
+title               : pRoJEct-VeXEd
+owner               : "DeerRIDER"
+url                : "https://akiritsu.github.io"
+baseurl            : "/pRoJEct-VeXEd"
 permalink           : /:title/
-description         : "~"
+description         : "A hacker-style note-keeping website template."
 markdown            : kramdown
 statement           : "Designed by DeerRIDER, All Rights Reserved"
 bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]<>~" # texts randomly displayed in background
@@ -59,7 +59,7 @@ collections:
     output          : true
 
 # 3. Comment settings（disqus.com）
-disqus_username     : xCENTx
+disqus_username     : akiritsu
 
 # 4. Default page settings (WILL BE overwriten by front-matters of a page)
 defaults:
@@ -84,11 +84,11 @@ defaults:
       footer              : true        # whether show footer by default
 
 # 5. Social Media Accounts
-email               : 
+email               : "https://github.com/akiritsu/pRoJEct-VeXEd" 
 linkedin            : 
 github              : "just-test" 
 gitlab              : 
-website             : "https://nightfyre.xyz/"
+website             : "https://github.com/akiritsu/pRoJEct-VeXEd"
 twitter             : "just-test"
 facebook            : "just-test"
 instagram           : 
