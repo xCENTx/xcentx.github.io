@@ -58,7 +58,7 @@ If anything it appears we are at least getting close to our objective.
 > // else it prints the patching info only once - right after boot.  
 ```
 ![image](https://i.imgur.com/zXpQR6E.png)![image](https://i.imgur.com/BKBh0u2.png)
-<p align="left"> <img src="https://i.imgur.com/zXpQR6E.png"> </p> <p align="right"> <img src="https://i.imgur.com/BKBh0u2.png"> </p>  
+<p align="left"><img src="https://i.imgur.com/zXpQR6E.png"></p><p align="right"><img src="https://i.imgur.com/BKBh0u2.png"></p>  
 
 ## Compiling PCSX2 from Source
 Still have a lot more reversing to do, but before go any further it would be a good time to compile PCSX2 from source and start looking at the logs.
