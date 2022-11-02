@@ -1,8 +1,8 @@
 # 1. Site Settings
-title               : NightFyres Documents
-owner               : "DeerRIDER"
-url                : "https://xCENTx.github.io"
-baseurl            : "/pRoJEct-VeXEd"
+title               : NightFyre FrameWorks
+owner               : "NightFyre"
+url                : "https://xcentx.github.io"
+baseurl            : "/xcentx"
 permalink           : /:title/
 description         : "~"
 markdown            : kramdown
@@ -15,19 +15,48 @@ bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]
 collection_order    : 
   [
     "posts",
-    "videos",
+    "math",
+    "album",
+    "physics",
+    "biology",
+    "finance",
+    "physics",
     "my_notes",
+    "portfolio",
   ]
 collections:
-  posts:
+  math:   
     output          : true
-  videos:
+    permalink       : /:collection/:title/
+    sort_by         : date
+    alias           : "Mathematics"
+  portfolio:
     output          : true
+    permalink       : /:collection/:title/
+    order: # specify post order manually
+      - portfolio3.md
+      - portfolio2.md
+      - portfolio1.md
+  album:
+    output          : true
+    permalink       : /:collection/:title/
+    sort_by         : date
+  physics:
+    output          : true
+    permalink       : /:collection/:title/
+  biology:
+    output          : true
+    permalink       : /:collection/:title/
+  finance:
+    output          : true
+    permalink       : /:collection/:title/
   my_notes:
     output          : true
     permalink       : /:collection/:title/
     # An alias should be given or the UNDERSCORE will appeared 
     alias           : "My Notes"
+  posts:
+    output          : true
 
 # 3. Comment settings（disqus.com）
 disqus_username     : xCENTx
@@ -55,16 +84,16 @@ defaults:
       footer              : true        # whether show footer by default
 
 # 5. Social Media Accounts
-email               : "" 
+email               : 
 linkedin            : 
-github              :  
+github              : "just-test" 
 gitlab              : 
 website             : "https://nightfyre.xyz/"
-twitter             : 
-facebook            : 
+twitter             : "just-test"
+facebook            : "just-test"
 instagram           : 
-youtube             : 
-steam               : 
+youtube             : "just-test"
+steam               : "just-test"
 weibo               :
       
 # 6. Where things are
