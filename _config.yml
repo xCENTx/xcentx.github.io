@@ -1,10 +1,10 @@
 # 1. Site Settings
-title               : pRoJEct-VeXEd
+title               : NightFyres Documents
 owner               : "DeerRIDER"
-url                : "https://akiritsu.github.io"
+url                : "https://xCENTx.github.io"
 baseurl            : "/pRoJEct-VeXEd"
 permalink           : /:title/
-description         : "A hacker-style note-keeping website template."
+description         : "~"
 markdown            : kramdown
 statement           : "Designed by DeerRIDER, All Rights Reserved"
 bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]<>~" # texts randomly displayed in background
@@ -15,51 +15,22 @@ bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]
 collection_order    : 
   [
     "posts",
-    "math",
-    "album",
-    "physics",
-    "biology",
-    "finance",
-    "physics",
+    "videos",
     "my_notes",
-    "portfolio",
   ]
 collections:
-  math:   
+  posts:
     output          : true
-    permalink       : /:collection/:title/
-    sort_by         : date
-    alias           : "Mathematics"
-  portfolio:
+  videos:
     output          : true
-    permalink       : /:collection/:title/
-    order: # specify post order manually
-      - portfolio3.md
-      - portfolio2.md
-      - portfolio1.md
-  album:
-    output          : true
-    permalink       : /:collection/:title/
-    sort_by         : date
-  physics:
-    output          : true
-    permalink       : /:collection/:title/
-  biology:
-    output          : true
-    permalink       : /:collection/:title/
-  finance:
-    output          : true
-    permalink       : /:collection/:title/
   my_notes:
     output          : true
     permalink       : /:collection/:title/
     # An alias should be given or the UNDERSCORE will appeared 
     alias           : "My Notes"
-  posts:
-    output          : true
 
 # 3. Comment settings（disqus.com）
-disqus_username     : akiritsu
+disqus_username     : xCENTx
 
 # 4. Default page settings (WILL BE overwriten by front-matters of a page)
 defaults:
@@ -84,16 +55,16 @@ defaults:
       footer              : true        # whether show footer by default
 
 # 5. Social Media Accounts
-email               : "https://github.com/akiritsu/pRoJEct-VeXEd" 
+email               : "" 
 linkedin            : 
-github              : "just-test" 
+github              :  
 gitlab              : 
-website             : "https://github.com/akiritsu/pRoJEct-VeXEd"
-twitter             : "just-test"
-facebook            : "just-test"
+website             : "https://nightfyre.xyz/"
+twitter             : 
+facebook            : 
 instagram           : 
-youtube             : "just-test"
-steam               : "just-test"
+youtube             : 
+steam               : 
 weibo               :
       
 # 6. Where things are
