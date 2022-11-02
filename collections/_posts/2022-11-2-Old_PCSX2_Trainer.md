@@ -61,10 +61,10 @@ If anything it appears we are at least getting close to our objective.
 > - | ![image](https://i.imgur.com/zXpQR6E.png) | ![image](https://i.imgur.com/BKBh0u2.png) |
 
 ## Compiling PCSX2 from Source
-Still have a lot more reversing to do, but before go any further it would be a good time to compile PCSX2 from source and start looking at the logs.
-Compiling PCSX2 from source is easy , just press the build button (be sure you are in the v1.6.x branch and in Debug Win32 mode)
-Now that the source is compiled it will be much easier to debug the patching process. Essentially the goal at this point is to both look at PCSX2 Debug Log w/ verbose logging as well as toggle cheats and change some general settings to get patches to apply.
-Along with this we also want to start setting some breakpoints in PCSX2 source. Our goal is to trip a breakpoint and start walking the function calls until we can find something that will cause our patches to load without breaking anything in the process.
+Still have a lot more reversing to do, but before go any further it would be a good time to compile PCSX2 from source and start looking at the logs.  
+Compiling PCSX2 from source is easy , just press the build button (be sure you are in the v1.6.x branch and in Debug Win32 mode)  
+Now that the source is compiled it will be much easier to debug the patching process. Essentially the goal at this point is to both look at PCSX2 Debug Log w/ verbose logging as well as toggle cheats and change some general settings to get patches to apply.  
+Along with this we also want to start setting some breakpoints in PCSX2 source. Our goal is to trip a breakpoint and start walking the function calls until we can find something that will cause our patches to load without breaking anything in the process.  
 
 <!-- 
 
