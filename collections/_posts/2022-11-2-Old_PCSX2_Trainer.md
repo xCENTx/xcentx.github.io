@@ -19,15 +19,8 @@ publish: true
 
 I want to help resolve a big issue that will plague anybody who tries to make a trainer for PCSX2 v1.6 and earlier.  
 Any patches applied in lower memory regions whether it be external or internal , will be not be applied until the virtual memory table is recompiled.  
-
 A simple example to highlite this problem would involve applying the Render Fix patch for SOCOM 2.  
 Writing to the address will show the changed value in both the emulator debug view and cheat engine.
-
-<!-- 
-
-    IMAGES
-
--->
 
 ## Reversing PCSX2 Source
 Solving this issue will require dissecting the PCSX2 source code. Originally I found that applying a speedhack patch in PCSX2 settings would trigger any applied patches from my trainer to work. This proved to be a rather interesting fing as it didn't take too much searching in PCSX2 Source to find a function we could utilize. Lets first go over the process of even finding such a function. The PCSX2 source is MASSIVE, even knowing that changing the speed in settings and pressing apply would cause our cheat to finally apply as normal .... There is A LOT happening when you press that "Apply Changes" button. 
@@ -62,16 +55,19 @@ If anything it appears we are at least getting close to our objective.
 
 ## Compiling PCSX2 from Source
 Still have a lot more reversing to do, but before go any further it would be a good time to compile PCSX2 from source and start looking at the logs.  
-Compiling PCSX2 from source is easy , just press the build button (be sure you are in the v1.6.x branch and in Debug Win32 mode)  
+Compiling PCSX2 from source is easy , just press the build button (be sure you are in the v1.6.x branch and in Debug Win32 mode). The toughest part would be having to re configure pcsx2.  
 Now that the source is compiled it will be much easier to debug the patching process. Essentially the goal at this point is to both look at PCSX2 Debug Log w/ verbose logging as well as toggle cheats and change some general settings to get patches to apply.  
 Along with this we also want to start setting some breakpoints in PCSX2 source. Our goal is to trip a breakpoint and start walking the function calls until we can find something that will cause our patches to load without breaking anything in the process.  
 
-<!-- 
+**First Set of Breakpoints**
+> - Pcsx2App::SysApplySettings()
+> - loadGameSettings()
+> - _ApplySettings()
+> - LoadAllPatchesAndStuff()
+> - AppCoreThread::ApplySettings()
 
-    IMAGES
-
--->
-
+> - | PCSX2 Verbose Logs                        |   Breakpoints         |
+> - | ![image](https://i.imgur.com/RfoOTqw.png) | ![image]()            |
 
 ## Finding the Function
 The following function is located in file - `iR5900-32.cpp`
