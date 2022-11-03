@@ -65,9 +65,14 @@ Along with this we also want to start setting some breakpoints in PCSX2 source. 
 > - _ApplySettings()
 > - LoadAllPatchesAndStuff()
 > - AppCoreThread::ApplySettings()
+> - | PCSX2 Verbose Logs                        |   Breakpoints                             |
+> - | ![image](https://i.imgur.com/RfoOTqw.png) | ![image](https://i.imgur.com/jMbbLQx.png) |
 
-> - | PCSX2 Verbose Logs                        |   Breakpoints         |
-> - | ![image](https://i.imgur.com/RfoOTqw.png) | ![image]()            |
+After some trial and error no amount of changed settings or cheats enabled was causing the breakpoints to be hit. Launching into the PS2 Bios would infact hit breakpoints but this isn't exactly what we want to trigger a breakpoint.
+Digging further into the search there is a few more files to look into
+> - `Patch.cpp`  
+> - `iR5900-32.cpp`  
+
 
 ## Finding the Function
 The following function is located in file - `iR5900-32.cpp`
