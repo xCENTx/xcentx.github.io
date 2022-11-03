@@ -1,7 +1,7 @@
 ---
-title: Accessing PCSX2 Memory
+title: Recompiling PCSX2 Virtual Memory
 category: Memory Management
-date: 2022-11-2
+date: 2022-11-3
 encrypted_text: true
 publish: true
 ---
