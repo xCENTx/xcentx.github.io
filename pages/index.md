@@ -22,7 +22,8 @@ permalink: /
 `"PCSX2 provides native cheat support with the use of PNACH files. Being that the PS2 is 20+ years old at this point and that cheat software devices were common place during its lifecycle , the PlayStation 2 has a massive cheat library ready to be utilized in new ways thanks to emulation . . ."`
 
 > - [PCSX2 v1.6 Recompile Virtual Memory](/Old_PCSX2_Trainer)  
-`"I want to help resolve a big issue that will plague anybody who tries to make a trainer for PCSX2 v1.6 and earlier."`  
+`"I want to help resolve a big issue that will plague anybody who tries to make a trainer for PCSX2 v1.6 and earlier . . ."`  
+
 <!--    Future Articles
 
 > - [PCSX2 v1.6 Recompile Virtual Memory](/Old_PCSX2_Trainer)  
