@@ -1,51 +1,56 @@
 # 1. Site Settings
 title               : INDEX
 owner               : "NightFyre"
-url                : #
-baseurl            : #
+url                 : "https://xcentx.github.io"
+baseurl             : ""
 permalink           : /:title/
 description         : "NightFyre's Public Documents"
 markdown            : kramdown
 statement           : "Designed by DeerRIDER, All Rights Reserved"
-bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]<>~" # texts randomly displayed in background
+bgtext              : "ABCFGHKLMNPQRSVWXYZabcdefghijklmnopqrstuvwxyz@#$%&*+-;/[]<>~"
 
 # 2. Your Collections
-# You can specify the order shown in Archive window. 
+# You can specify the order shown in Archive window.
 # Keep it null if you want to show items in alphabetic order.
-collection_order    : 
-  [
-    "socom",
-    "ps2",
-    "pcsx2",
-    "rpcs3",
-    "reverse_engineering",
-    "projects",
-  ]
-  collections:
-   socom:
-     output: false
-     sort_by: date
-     alias: "SOCOM"
-   ps2:
-     output: false
-     sort_by: date
-     alias: "PlayStation 2"
-   pcsx2:
-     output: false
-     sort_by: date
-     alias: "PCSX2"
-   rpcs3:
-     output: false
-     sort_by: date
-     alias: "RPCS3"
-   reverse_engineering:
-     output: false
-     sort_by: date
-     alias: "Reverse Engineering"
-   projects:
-     output: false
-     sort_by: date
-     alias: "Projects"
+
+collection_order:
+  - socom
+  - ps2
+  - pcsx2
+  - rpcs3
+  - reverse_engineering
+  - projects
+
+collections:
+  socom:
+    output: false
+    sort_by: date
+    alias: "SOCOM"
+
+  ps2:
+    output: false
+    sort_by: date
+    alias: "PlayStation 2"
+
+  pcsx2:
+    output: false
+    sort_by: date
+    alias: "PCSX2"
+
+  rpcs3:
+    output: false
+    sort_by: date
+    alias: "RPCS3"
+
+  reverse_engineering:
+    output: false
+    sort_by: date
+    alias: "Reverse Engineering"
+
+  projects:
+    output: false
+    sort_by: date
+    alias: "Projects"
 
 # 3. Comment settings（disqus.com）
 disqus_username     : xCENTx
