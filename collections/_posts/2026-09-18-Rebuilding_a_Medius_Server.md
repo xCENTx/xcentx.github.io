@@ -1,3 +1,14 @@
+---
+title: Building a SOCOM 1 Medius Server
+category: Reversal
+date: 2026-09-18
+encrypted_text: true
+---
+
+<p align="center">
+<img src="https://i.imgur.com/cIDBuUK.png">
+</p>
+
 # REBUILDING A SOCOM 1 MEDIUS SERVER
 
 *From the first encrypted packet to a working multiplayer game*
@@ -132,7 +143,7 @@ An early mistake would be treating the length as the number of bytes remaining a
 
 TCP is also a stream and not a packet queue. One call to recv() is not guaranteed to return one full RT frame. It may return half a header, one frame, or several frames depending on timing. I used a helper which continues reading until an exact number of bytes has been received.
 
-```text
+```py
 def recv_exact(sock, count):
     data = bytearray()
 
@@ -149,7 +160,7 @@ def recv_exact(sock, count):
 
 The frame reader then becomes very easy to reason about.
 
-```text
+```py
 def recv_rt_frame(sock):
     header = recv_exact(sock, 3)
 
@@ -184,7 +195,7 @@ The algorithm used by the server is:
 - Place the 3-bit cipher context in the upper bits of digest byte 3
 - Return the first 4 bytes
 
-```text
+```py
 def scert_hash(data, context):
     digest = bytearray(hashlib.sha1(data).digest())
 
@@ -198,7 +209,7 @@ def scert_hash(data, context):
 
 The context can therefore be recovered from a received hash with:
 
-```text
+```c
 context = hash_value[3] >> 5
 ```
 
@@ -219,14 +230,14 @@ The important details are:
 
 Python can perform the raw modular exponent operation directly:
 
-```text
+```py
 value = int.from_bytes(ciphertext[::-1], "big")
 plain_int = pow(value, GLOBAL_D, GLOBAL_N)
 ```
 
 The result then has to be converted back into the exact 64-byte little-endian representation expected by the PS2 client. I wrote a Java-compatible conversion helper because a normal to_bytes() conversion was not enough for every value.
 
-```text
+```py
 def java_bigint_to_little_endian(value, target_length):
     if value == 0:
         big = b"\x00"
@@ -282,7 +293,7 @@ plaintext
 
 The receive path performs the reverse operation and then verifies the hash against the resulting plaintext.
 
-```text
+```py
 def decrypt_client_frame(frame):
     context = frame["hash"][3] >> 5
 
@@ -369,7 +380,7 @@ The first version of the server only needed to convince one client that a login 
 
 I added a SQLite database containing accounts and player statistics.
 
-```text
+```py
 CREATE TABLE IF NOT EXISTS accounts (
     account_id INTEGER PRIMARY KEY,
     app_id INTEGER NOT NULL,
@@ -407,7 +418,7 @@ The login response therefore includes two important strings:
 
 The server stores a reservation indexed by AppId, SessionKey and AccessKey.
 
-```text
+```py
 @dataclass
 class ReservedSession:
     account_id: int
@@ -425,7 +436,7 @@ That detail matters because two consoles or PCSX2 instances may be behind the sa
 
 The response also tells SOCOM where to find the MLS. I represented the Medius 1.40 connection data with small serialization classes so the exact packet size can be asserted.
 
-```text
+```py
 @dataclass
 class NetAddress140:
     address_type: int
@@ -448,7 +459,7 @@ Fixed-size strings are null-terminated and padded to the protocol's field length
 
 The MLS begins with another CLIENT_CONNECT_TCP. This connection can be resolved against the session reservation created during MAS login.
 
-```text
+```py
 reservation = find_reserved_session_by_credentials(
     connect["app_id"],
     connect["session_key"],
@@ -503,7 +514,7 @@ I did not begin with perfect Python structures for every Medius message. The pra
 
 For example, AccountLogin became very easy to follow once its fixed-width fields were named.
 
-```text
+```py
 @dataclass
 class AccountLoginRequest:
     message_id: bytes
@@ -539,7 +550,7 @@ The server maintains room and game state behind a lock because several client th
 
 A game record contains the information required by both the MLS and DME:
 
-```text
+```py
 game = {
     "world_id": world_id,
     "app_id": app_id,
@@ -572,7 +583,7 @@ The server first resolves the reserved session. It then verifies that the reques
 
 Each connected client receives a world-local DME identifier. The first free identifier is selected, beginning at zero.
 
-```text
+```py
 used_dme_ids = {
     info["dme_id"]
     for info in clients.values()
@@ -588,7 +599,7 @@ SERVER_CONNECT_ACCEPT_TCP returns that DME ID and the current player count. At t
 
 The DME client record also stores the receive flags sent by the game:
 
-```text
+```py
 client_info = {
     "sock": sock,
     "reservation": reservation,
@@ -626,7 +637,7 @@ The client sends RT_CLIENT_APP_BROADCAST with an opaque DME/game payload. The se
 
 It converts the packet into RT_CLIENT_APP_SINGLE for each eligible recipient and prefixes the sender's DME ID.
 
-```text
+```py
 Incoming from player:
     RT_CLIENT_APP_BROADCAST
     [opaque payload]
@@ -639,7 +650,7 @@ Outgoing to each other player:
 
 The core transformation is therefore very small.
 
-```text
+```py
 outgoing_payload = (
     pack_u16(sender_info["dme_id"])
     + payload
@@ -673,7 +684,7 @@ It is important not to pass the original destination prefix through unchanged. F
 
 Every write to a client socket uses a per-client send lock. Multiple DME threads may attempt to forward traffic to the same player at the same time. Without serialized writes, bytes from two RT frames could be interleaved on the TCP stream.
 
-```text
+```py
 def dme_send(client_info, frame):
     with client_info["send_lock"]:
         client_info["sock"].sendall(frame)
@@ -695,7 +706,7 @@ Cleanup performs the following:
 
 The cleanup routine accepts the expected socket. This prevents an older dead socket from removing a newer connection if the same account reconnects quickly.
 
-```text
+```py
 if expected_sock is not None and (
     current is None
     or current["sock"] is not expected_sock
@@ -722,7 +733,7 @@ Shared dictionaries are protected with locks. Socket writes have their own per-c
 
 The listener itself is intentionally simple:
 
-```text
+```py
 def run_listener(name, port, handler):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -835,7 +846,7 @@ Closing PCSX2 is enough to prove why cleanup must happen after any socket failur
 
 The main routine initializes the database and launches each service independently.
 
-```text
+```py
 def main():
     init_database()
 
