@@ -4,11 +4,15 @@ category: Reversal
 date: 2026-09-18
 encrypted_text: true
 ---
+<!--- album
+https://imgur.com/a/O6GQNZJ
+--->
 
 <p align="center">
 <img src="https://i.imgur.com/cIDBuUK.png">
 </p>
 
+![](https://i.imgur.com/Q73vEso.png)
 # REBUILDING A SOCOM 1 MEDIUS SERVER
 
 *From the first encrypted packet to a working multiplayer game*
@@ -17,6 +21,7 @@ encrypted_text: true
 >
 > This is not an official Sony server and it is not a complete implementation of every Medius feature. It is a research server built from packet captures, open-source references, reverse engineering and a LOT of trial and error.
 
+![](https://i.imgur.com/pXjzpXW.png)
 ## OVERVIEW
 
 SOCOM does not connect to one magical "game server" which handles everything. The online flow is split across several services and each service is responsible for a different part of the process.
@@ -374,6 +379,7 @@ The connection class stored in SessionBegin is retained with the pending authent
 
 SOCOM then sends VersionServer. In the working retail sequence this request does not need a response. This was another place where blindly replying to every request could have moved the client away from the observed behavior. The implementation logs it and continues waiting for AccountLogin or AccountRegistration.
 
+![](https://i.imgur.com/h0P66MU.png)
 ## PERSISTENT ACCOUNTS
 
 The first version of the server only needed to convince one client that a login succeeded. That is useful for packet research but it is not an account system.
@@ -455,6 +461,7 @@ class NetConnectionInfo140:
 
 Fixed-size strings are null-terminated and padded to the protocol's field length. These are C-style buffers, not variable-length Python strings. One missing padding byte shifts every field after it and will usually result in the client quietly rejecting the entire response.
 
+![](https://i.imgur.com/KId7J3c.png)
 ## MLS CONNECTION AND LOBBY STATE
 
 The MLS begins with another CLIENT_CONNECT_TCP. This connection can be resolved against the session reservation created during MAS login.
@@ -536,6 +543,7 @@ This is much easier to work with than scattering unexplained slices throughout t
 
 I followed the same approach with ctypes for RTFrameHeader and selected Medius structures. You do not need to force every packet into a class immediately. Use a structure when the layout is understood and it improves readability. Keep raw payloads when the inner format is still being researched.
 
+![](https://i.imgur.com/iDFQnFI.png)
 ## BRIEFING ROOMS AND GAME WORLDS
 
 Medius uses several identifiers which can sound interchangeable until the server needs to route them.
@@ -915,6 +923,7 @@ The server also handles the ugly real-world cases we encountered during testing,
 
 There is still plenty left to reverse. FieldUpdate serialization is not fully understood, NAT is currently observation-only and a number of Medius reports need better structure definitions. But those unknowns no longer block the basic online path.
 
+![](https://i.imgur.com/C3ABYUe.png)
 ## FINAL THOUGHTS
 
 When I started this I did not have a clean specification for SOCOM 1's server. I had a hostname, a port and an encrypted 71-byte packet.
