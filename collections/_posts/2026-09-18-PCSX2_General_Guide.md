@@ -49,13 +49,13 @@ pcsx2-qt.EEmem
 
 Internal C++ DLL EEMemory is accessible via [GetProcAddress](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress)
 in c++ however things get a bit more complex depending on your attack method be it internal or external. If your application is internal you can call "GetProcAddress" with the name of the export "EEmem" to get a pointer to the export virtual address. These are the easiest methods to obtain access to a games base address. 
-```text
+```cpp
 // inside dll main ( reference to hModule , this can be passed to a variable as well.)
 unsigned __int64 EEMem = GetProcAddress(hModule, "EEmem");
 ```
 
 External C++ is probably the hardest method of accessing EEMemory. You need to walk the export table until you get a name that matches an input key which in our case would be "EEmem". The process itself is actually quite simple once you understand how the data is structured. Though it is still the most tedious process when compared to other approaches.
-```text
+```cpp
 //  below is my adaptation of GetProcAddress. Its further transformed to utilize the PCSX2PROCESSINFO64 structure defined in the spoiler below. You really just need the module base address of PCSX2 to get EEMemory address pointer
 __i64 PCSX2Memory::GetProcAddressEx(const pcsx2_t& pInfo, const std::string& name, __i64& result)
 {
@@ -101,7 +101,7 @@ __i64 PCSX2Memory::GetProcAddressEx(const pcsx2_t& pInfo, const std::string& nam
 <details>
 <summary>PCSX2Memory::ResolveProcess Function</summary>
 
-```text
+```cpp
 typedef unsigned __int8 __i8;		//	1Byte
 typedef unsigned __int16 __i16;		//	2Bytes
 typedef unsigned __int32 __i32;		//	4Bytes
@@ -216,7 +216,8 @@ In regards to SOCOM 1 the actual player position that can be edited is a member 
 in this example the instruction is as follows
 ```text
     lwc1    f00,0x1C(s1)
-```Essentially this is storing the value at offset 0x1C into register f00
+```
+Essentially this is storing the value at offset 0x1C into register f00
 the register in parenthesis will contain the base address for the class variable
 
 The result would be as follows
@@ -258,7 +259,8 @@ For this excersise a search via PCSX2 v2.0 resulted in the following address for
 PCSX2 v2.0 has a pointer to the EEmemory range. Its accessed via an exported module EEmem. You can obtain it by using the following address
 ```text
 PCSX2x64.EEmem
-```In this instance EEmem points to the following address: 00007FF6D0000000
+```
+In this instance EEmem points to the following address: 00007FF6D0000000
 Think of this address as the 0x20000000 section in PCSX2 v1.6 except it will change every time you launch PCSX2
 
 So we can take the address we found for our position and subtract it from EEmem to get the RAW PS2 address for our Position
@@ -277,7 +279,7 @@ There's a lot that goes into this, mainly the discovery aspect. I'm not gonna bo
 Essentially memory in PCSX2 is accessed in a very weird manner. At some point you might write to memory and realize no change is being made via cheat engine yet the change is being made if you edit the memory in the PCSX2 debugger. For one, noticing this requires a high level of knowledge on what you are trying to achieve. Most people would see that a value change has no effect and move onto the next ... that is REALLY dangerous in terms of hacking PS2 games Because you'll NEVER find the value because you simply ignored it for not being the result. This also gets really confusing as well. For the most part ... this really only effects .text segment functions (in pc hacking terms) meaning you wont really need to mess about with this if you are accessing class variables and just modifying say player health , position and weapon ammo directly. But lets for a second think about how these things are done effectively on PC. We don't leave it at finding the offset right? You get what writes / accesses that address and patch the instruction. THIS is where you will need to recompile the virtual memory table. Because if you patch a function, the change will not be seen by the emulator as the interpreter is using the cached result. 
 
 in PCSX2 source there is a file called "iR5900-32.cpp" within it is a function called recResetEE. If you call this function after applying your byte patch, it will get recompiled and your changes will take effect. This one thing tripped me up for SOOOOOO long
-```text
+```cpp
 static void recResetEE()
 {
     if (eeCpuExecuting)
@@ -301,7 +303,7 @@ I have not made any for 1.6 but now that I have made this thread I will make a p
 <summary>Additional details</summary>
 
 GetEEmem
-```text
+```lua
 -- Register PS2mem Symbol --
 local PS2mem = getAddress("PCSX2x64.eemem")
 PS2mem = readPointer(PS2mem)
@@ -309,7 +311,7 @@ registerSymbol("PS2mem", PS2mem, true)
 ```
 
 ResolveAddress
-```text
+```lua
 -- Resolves input RAW PS2 address
 -- example input: 0x20440C38
 -- example output: 0x440C38
@@ -319,7 +321,7 @@ end
 ```
 
 GetPS2Address
-```text
+```lua
 --  Resolves RAW PS2 Address relative to EEMem offset
 --  input must be RAW PS2 Offset i.e [ 0x20440C38 ] remove the 0x20
 --  Alternatively call Resolve Offset and input everything as RAW PS2 format
@@ -331,7 +333,7 @@ end
 ```
 
 GetPS2AddrFromPointer
-```text
+```lua
 --  Gets pointer address by reading 4bytes from input
 -- returns result + eemem
 function GetPS2AddrFromPointer(Pointer)
@@ -343,7 +345,7 @@ end
 ```
 
 GetPS2AddrFromPointerChain
-```text
+```lua
 -- Get address by navigating pointer chain
 -- input Base Address must be in shorthand RAW PS2 Format, this gets resolved
 function GetPS2AddrFromPointerChain(BaseAddress, Offsets)
@@ -365,7 +367,7 @@ Game: Sly Cooper and the Thievius Raccoonus
 <details>
 <summary>Additional details</summary>
 
-```text
+```lua
 
 --  PCSX2 Cheat Engine Script Framework  --
 
@@ -518,7 +520,7 @@ Without the following , it will be impossible to access game memory.
 - **dwEEMem** is the EEmemPointer. It points to the EEmodule
 - **BasePS2MemorySpace** is the EEmemModule. This is essentially the base address for the emulated game.
 
-```text
+```c
 static uintptr_t dwGameBase = (uintptr_t)GetModuleHandle(g_ModuleName);    
 static uintptr_t dwEEMem = (uintptr_t)GetProcAddress(g_hModule, "EEmem"); NOTE: g_hModule is initialized upon dll injection. Passing hModule to g_hModule.
 static uintptr_t BasePS2MemorySpace = *(uintptr_t*)dwEEMem;
@@ -533,7 +535,7 @@ static uintptr_t BasePS2MemorySpace = *(uintptr_t*)dwEEMem;
 /// - Result                : 7FF660000000 + 0x48D548 = 7FF66048D548
 **GetAddress**
 Converts shortened RAW PS2 format address to x64 address
-```text
+```c
 uintptr_t GetAddr(unsigned int RAW_PS2_OFFSET)
 {
 	return (BasePS2MemorySpace + RAW_PS2_OFFSET);
@@ -541,7 +543,7 @@ uintptr_t GetAddr(unsigned int RAW_PS2_OFFSET)
 ```
 
 **GetClassPointer**
-```text
+```c
 /// <summary>
 /// Assigns Shortened RAW PS2 Format Code to Class Pointer
 /// Note: Must be a base address
@@ -556,7 +558,7 @@ uintptr_t GetClassPtr(unsigned int RAW_PS2_OFFSET)
 ```
 
 **ResolvePointerChain**
-```text
+```c
 /// <summary>
 /// Resolves Pointer Chain from input Shorthand RAW PS2 Format Address
 /// </summary>
@@ -593,7 +595,7 @@ NOTE: Only reads / writes the last 4 bytes
 **READ MEMORY**
 EXAMPLE: int VALUE = PS2Read<int>(PS2BaseMemorySpace + 0x44D648);
 this would read the value stored at the input address.
-```text
+```c
 template<typename T> inline T PS2Read(uintptr_t Address)
 {
 	unsigned int format = *(int32_t*)Address;
@@ -606,7 +608,7 @@ template<typename T> inline T PS2Read(uintptr_t Address)
 **WriteMemory**
 EXAMPLE: PS2Write<int>(PS2BaseMemorySpace + 0x44D648, NULL);
 this would write 00000000 to address located at PS2BaseMemorySpace + 0x44D648
-```text
+```c
 template<typename T> inline void PS2Write(uintptr_t Address, T Patch)
 {
 	*(int32_t*)Address = Patch;
@@ -671,7 +673,7 @@ Each of the headers above will be much better at explaining HOW everything works
 
 in both functions it can be noted that each structure contains a variable 'pc' which is used to determine current instruction execution, it is then iterated after being read. We can use this variable in the structure in our own module to determine if our method / instruction is being accessed and if so modify register variables accordingly.
 
-```text
+```cpp
 ///  Get Debug Registers
 PlayStation2::PCSX2::o_cpuRegs = 0x0;
 PlayStation2::PCSX2::g_cpuRegs = reinterpret_cast<PlayStation2::cpuRegisters*>((PlayStation2::Memory::GetAddr(PlayStation2::PCSX2::o_cpuRegs) - 0x2AC));    //  [0x2AC is g_cpuRegs.code] The offset for cpuRegs found in recompileNextInstruction is displaced to the code offset in the structure
@@ -724,7 +726,7 @@ if (PlayStation2::PCSX2::g_psxRegs->pc == fn_start)
 <details>
 <summary>Additional details</summary>
 
-```text
+```c
 static unsigned int o_gs_device;                                                //  global pointer to GSDevice  -> PCSX2 v1.7.5617: 0x3FA2728
 static unsigned int o_GSDevice_GetRenderAPI;                                    //  offset to function  //  GSDevice::vfIndex [9]
 typedef RenderAPI(__fastcall* GSDevice_GetRenderAPI_stub)(GSDevice*);           //  Returns the graphics API used by this device.
@@ -766,7 +768,7 @@ sceVu0CopyMatrix((int)v53, *(_DWORD *)(*(_DWORD *)(zdb::CWorld::m_world + 0xC0) 
 <details>
 <summary>Additional details</summary>
 
-```text
+```c
 v29 = sub_17B190(&x__data_CEntity_m_List);
 result = sub_17B170(v54, v29);
 v54[2] = v54[0];
@@ -886,7 +888,7 @@ anywho . . . this means the game is copying camera matrices directly into Scratc
 See the following struct from pcsx2 source code
 
 <https://github.com/PCSX2/pcsx2/blob/47931a06890ae7ee70f7e3019ad1bdcba8a07c32/pcsx2/MemoryTypes.h#L32-L48>
-```text
+```cpp
 struct EEVM_MemoryAllocMess
 {
 	u8 Main[Ps2MemSize::MainRam];         // Main memory (hard-wired to 32MB)
@@ -908,7 +910,7 @@ struct EEVM_MemoryAllocMess
 
 with this information it was pretty easy to come up with a solution to obtain reference of the scratchpad base and so I wrote a little helper function to cleanly grab the base of ScratchPad in emulated space:
 
-```text
+```cpp
 __int64 PS2Memory::GetScratchPadBase() 
 { 
     return Memory::BasePS2MemorySpace + 
@@ -922,7 +924,7 @@ Finally , we have our result matrix that tripped me up for a few hours on my sun
 in summary, with PCSX2 , ScratchPad is just another buffer chunk in the big emulated EE memory blob and not at the static offset of 0x70000000. I hope this proves useful to somebody sometime in the future. Currently it does seem that I am going at this alone but regardless ... I deem it necessary to share any and all my findings for those that may be trying to resolve the same problems I find myself facing.
 
 Last but not least ... here is the full function i use in SOCOM to get the Camera View Matrix via scratchpad memory
-```text
+```c
 bool CWorld::GetViewMatrix(Mat4x4* out)
 {
 	/* sceVu0CopyMatrix((int)v53, *(_DWORD *)(*(_DWORD *)(zdb::CWorld::m_world + 0xC0) + 0x3C0) + 0x20); */
