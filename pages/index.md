@@ -24,9 +24,14 @@ permalink: /
 > - [PCSX2 v1.6 Recompile Virtual Memory](/Old_PCSX2_Trainer)  
 `"I want to help resolve a big issue that will plague anybody who tries to make a trainer for PCSX2 v1.6 and earlier . . ."`  
 
-> - [REBUILDING A MEDIUS SERVER FOR SOCOM 1](/Rebuilding_a_Medius_Server)
+> - [REBUILDING A MEDIUS SERVER FOR SOCOM 1](/Rebuilding_a_Medius_Server)  
 `"Documenting my journey reversing medius and implementing a server for the playstation 2 title SOCOM"`  
 
+> - [PCSX2 - A General Guide for Making Cheats & Trainers](PCSX2_General_Guide)
+`""`  
+
+> - [RPCS3 - A General Guide for Making Cheats & Trainers](RPCS3_General_Guide)
+`""`  
 
 <!--    Future Articles
 
