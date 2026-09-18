@@ -18,13 +18,13 @@ permalink: /
 > - [Making a TaskForce Cheat](/TaskForce_Internal/)  
 `"Task Force is a game that was created by a few SOCOM fans. SOCOM was a popular 3rd person tactical shooter on the PlayStation 2 back in the early 2000's. Due to SONY not making a SOCOM since the PlayStation 3 . . ."`
 
-> - [Accessing PCSX2 Memory (v1.7+)](/PCSX2_Trainer/)  
+> - [PCSX2 - Accessing Memory (v1.7+)](/PCSX2_Trainer/)  
 `"PCSX2 provides native cheat support with the use of PNACH files. Being that the PS2 is 20+ years old at this point and that cheat software devices were common place during its lifecycle , the PlayStation 2 has a massive cheat library ready to be utilized in new ways thanks to emulation . . ."`
 
-> - [PCSX2 v1.6 Recompile Virtual Memory](/Old_PCSX2_Trainer)  
+> - [PCSX2 - Recompile Virtual Memory](/Old_PCSX2_Trainer)  
 `"I want to help resolve a big issue that will plague anybody who tries to make a trainer for PCSX2 v1.6 and earlier . . ."`  
 
-> - [REBUILDING A MEDIUS SERVER FOR SOCOM 1](/Rebuilding_a_Medius_Server)  
+> - [PS2 - Building a MEDIUS Server](/Rebuilding_a_Medius_Server)  
 `"Documenting my journey reversing medius and implementing a server for the playstation 2 title SOCOM"`  
 
 > - [PCSX2 - A General Guide for Making Cheats & Trainers](PCSX2_General_Guide)
